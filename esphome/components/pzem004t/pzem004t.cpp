@@ -64,7 +64,7 @@ void PZEM004T::loop() {
       }
 
       case 0xA3: { // Energy Response
-        uint16_t energy = (uint16_t(resp[1]) << 16) | (uint16_t(resp[2]) << 8 | (uint16_t(resp[3]) << 0);
+        uint16_t energy = (uint16_t(resp[1]) << 16) | (uint16_t(resp[2]) << 8) | (uint16_t(resp[3]) << 0);
         if (this->energy_sensor_ != nullptr)
           this->energy_sensor_->publish_state(energy);
         ESP_LOGD(TAG, "Got Energy %u Wh", energy);

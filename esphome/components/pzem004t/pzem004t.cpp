@@ -67,7 +67,7 @@ void PZEM004T::loop() {
         uint16_t energy = (uint16_t(resp[1]) << 16) | (uint16_t(resp[2]) << 8 | (uint16_t(resp[3]) << 0);
         if (this->energy_sensor_ != nullptr)
           this->energy_sensor_->publish_state(energy);
-        ESP_LOGD(TAG, "Got Energy %u kWh", energy);
+        ESP_LOGD(TAG, "Got Energy %u Wh", energy);
         this->write_state_(DONE);
         break;
       }        

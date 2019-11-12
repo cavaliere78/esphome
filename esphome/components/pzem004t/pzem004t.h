@@ -29,6 +29,7 @@ class PZEM004T : public PollingComponent, public uart::UARTDevice {
     READ_VOLTAGE = 0xB0,
     READ_CURRENT = 0xB1,
     READ_POWER = 0xB2,
+    READ_ENERGY = 0xB3,
     DONE = 0x00,
   } read_state_{DONE};
 

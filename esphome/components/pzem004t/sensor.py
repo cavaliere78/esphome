@@ -15,6 +15,7 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Optional(CONF_VOLTAGE): sensor.sensor_schema(UNIT_VOLT, ICON_FLASH, 1),
     cv.Optional(CONF_CURRENT): sensor.sensor_schema(UNIT_AMPERE, ICON_FLASH, 2),
     cv.Optional(CONF_POWER): sensor.sensor_schema(UNIT_WATT, ICON_FLASH, 0),
+    cv.Optional(CONF_ENERGY): sensor.sensor_schema('Wh', ICON_FLASH, 0),
 }).extend(cv.polling_component_schema('60s')).extend(uart.UART_DEVICE_SCHEMA)
 
 
@@ -35,3 +36,7 @@ def to_code(config):
         conf = config[CONF_POWER]
         sens = yield sensor.new_sensor(conf)
         cg.add(var.set_power_sensor(sens))
+    if CONF_ENERGY in config:
+        conf = config[CONF_ENERGY]
+        sens = yield sensor.new_sensor(conf)
+        cg.add(var.set_energy_sensor(sens))
